@@ -1,0 +1,113 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.input-group {
+    display: flex;
+    margin: 20px auto;
+    max-width: 400px;
+}
+
+input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4a4a6a;
+    color: white;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.card-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.card-image {
+    max-width: 300px;
+    margin-bottom: 20px;
+}
+
+.card-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.redeem-btn {
+    padding: 15px 30px;
+    background-color: #4a4a6a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.redeem-btn:hover {
+    background-color: #35354d;
+}
+
+.redeem-input {
+    max-width: 500px; /* Adjust as needed */
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.celebration {
+    margin-top: 20px;
+    height: 200px;
+    background-image: url('https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card-details {
+    margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+    .card-display {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: flex-start;
+    }
+    
+    .card-image {
+        margin-right: 20px;
+        margin-bottom: 0;
+    }
+}

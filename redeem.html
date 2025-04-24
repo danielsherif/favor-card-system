@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redeem Your Favor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container redeem-container">
+        <div class="card-display">
+            <div class="card-image">
+                <img id="cardImage" src="" alt="Favor Card">
+            </div>
+            <div class="card-details">
+                <h2>Favor Card <span id="cardNumber"></span></h2>
+                <p>For: <span id="recipientName">Loading...</span></p>
+                <p>Status: <span id="cardStatus">Loading...</span></p>
+            </div>
+        </div>
+        <div class="redeem-section">
+            <div id="redeemForm">
+                <p>Enter your assigned key (e.g., nickname) to redeem:</p>
+                <div class="input-group redeem-input">
+                    <input type="text" id="recipientKey" placeholder="Enter Key">
+                    <button id="redeemButton" class="redeem-btn">Verify & Redeem</button>
+                </div>
+                <p id="errorMessage" class="error-message hidden"></p> <!-- For showing errors -->
+            </div>
+            <div id="redeemMessage" class="hidden">
+                <p>Favor has been redeemed! Someone will contact you soon.</p>
+                <div class="celebration" id="celebration"></div>
+            </div>
+        </div>
+    </div>
+    <script src="api.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
