@@ -1,10 +1,18 @@
 const { Client } = require("@notionhq/client");
+require('dotenv').config({ path: '.env.development' });
 
-// Initialize Notion client
-const notion = new Client({
-  auth: process.env.NOTION_API_KEY,
-});
+// Initialize Notion client with environment variables
+const notionApiKey = process.env.NOTION_API_KEY;
 const databaseId = process.env.NOTION_DATABASE_ID;
+
+if (!notionApiKey || !databaseId) {
+  console.error('Required environment variables are missing');
+  throw new Error('Missing required environment variables');
+}
+
+const notion = new Client({
+  auth: notionApiKey,
+});
 
 exports.handler = async function (event) {
   try {

@@ -17,7 +17,7 @@ console.log("Notion Database ID:", databaseId); // Verify Database ID
 const TOTAL_CARDS = 100;
 const TEMPLATE_PATH = "./template.png";
 const OUTPUT_DIR = "./generated-cards";
-const BASE_URL = "http://localhost:8888/redeem.html?card="; // We'll update this after deployment
+const BASE_URL = "https://danyfavors.netlify.app/redeem.html?card=";
 const QR_POSITION = { x: 225, y: 950 }; // Position for QR code on the template
 
 // Ensure output directory exists
