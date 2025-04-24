@@ -1,5 +1,25 @@
+// Get modal and sound elements globally or ensure they are accessible
+const successModal = document.getElementById('successModal');
+const celebrationSound = document.getElementById('celebrationSound');
+const closeButton = document.querySelector('#successModal .close-button'); // More specific selector
+
+// Function to close the modal
+function closeModal() {
+    if (successModal) {
+        successModal.classList.add('hidden');
+    }
+    if (celebrationSound) {
+        celebrationSound.pause();
+        celebrationSound.currentTime = 0; // Reset sound playback
+    }
+}
+
 // Check if we're on a card redeem page
 document.addEventListener("DOMContentLoaded", function () {
+    // Add event listener for the close button inside DOMContentLoaded
+    if (closeButton) {
+        closeButton.addEventListener('click', closeModal);
+    }
   const urlParams = new URLSearchParams(window.location.search);
   const cardNumber = urlParams.get("card");
 
@@ -34,9 +54,16 @@ async function loadCardDetails(cardNumber) {
     // Update UI with basic card details
     document.getElementById("cardNumber").textContent = card.cardNumber;
     // We might hide the recipient name initially or show a placeholder
-    // document.getElementById('recipientName').textContent = card.recipientName; // Maybe hide this until verified?
-    document.getElementById("cardStatus").textContent = card.status;
-    document.getElementById("cardImage").src = card.imageUrl;
+    document.getElementById("recipientName").textContent = card.recipientName; // Maybe hide this until verified?
+    const statusElement = document.getElementById("cardStatus");
+    statusElement.textContent = card.status;
+    // Add class based on status
+    if (card.status === "Available") {
+      statusElement.classList.add("status-available");
+    } else {
+      statusElement.classList.remove("status-available"); // Ensure class is removed if not available
+    }
+    // document.getElementById("cardImage").src = card.imageUrl; // Image element removed
 
     const redeemButton = document.getElementById("redeemButton");
     const redeemForm = document.getElementById("redeemForm");
@@ -65,10 +92,21 @@ async function loadCardDetails(cardNumber) {
           await verifyAndRedeem(card.id, key);
 
           // Update UI on success
-          document.getElementById("cardStatus").textContent = "Redeemed";
+          const statusElement = document.getElementById("cardStatus");
+          statusElement.textContent = "Redeemed";
+          statusElement.classList.remove("status-available"); // Remove available class
           redeemForm.classList.add("hidden");
-          redeemMessage.classList.remove("hidden");
-          document.getElementById("celebration").style.display = "block";
+          // Keep original success message hidden or remove if modal replaces it entirely
+          // redeemMessage.classList.remove("hidden"); 
+          // document.getElementById("celebration").style.display = "block";
+
+          // Show the modal and play sound
+          if (successModal) {
+              successModal.classList.remove('hidden');
+          }
+          if (celebrationSound) {
+              celebrationSound.play().catch(error => console.error("Error playing sound:", error)); // Play sound with error handling
+          }
         } catch (error) {
           console.error("Error redeeming card:", error);
           errorMessage.textContent =

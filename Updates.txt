@@ -1,0 +1,6 @@
+Change url parameters
+Storing 
+Change UI completely
+Add an already redeemed status
+Change loading of name
+Add cool animatino when done
